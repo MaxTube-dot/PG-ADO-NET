@@ -4,191 +4,135 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище postgresModel" Provider="Npgsql" ProviderManifestToken="18.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="orders">
+    <Schema Namespace="Хранилище postgresModel" Provider="Npgsql" ProviderManifestToken="18.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="edc_other_files">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int4" Nullable="false" />
-          <Property Name="product_id" Type="int4" Nullable="false" />
-          <Property Name="quantity" Type="int4" Nullable="false" />
-          <Property Name="order_date" Type="timestamp" />
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="s3id" Type="text" />
+          <Property Name="created_on" Type="timestamp" />
+          <Property Name="path_edc" Type="text" />
+          <Property Name="path_edc_file" Type="text" />
+          <Property Name="filename" Type="text" />
+          <Property Name="size" Type="float8" />
+          <Property Name="md5" Type="text" />
+          <Property Name="upload_succes" Type="int4" />
+          <Property Name="error" Type="text" />
+          <Property Name="state" Type="int4" />
+          <Property Name="actual_for_process" Type="text" />
+          <Property Name="ede_other_t_id" Type="int4" />
+          <Property Name="tecmid" Type="text" />
+          <Property Name="tem_filename" Type="text" />
+          <Property Name="extension" Type="text" />
+          <Property Name="tecmid2" Type="text" />
         </EntityType>
-        <EntityType Name="products">
+        <EntityType Name="edc_other_t">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="price" Type="numeric" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="stock" Type="int4" />
-          <Property Name="created_at" Type="timestamp" />
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="loris_id" Type="uuid" />
+          <Property Name="ibso_id" Type="text" />
+          <Property Name="path_edc" Type="text" Nullable="false" />
+          <Property Name="type" Type="int4" Nullable="false" />
+          <Property Name="state" Type="int4" Nullable="false" />
+          <Property Name="uplodate_date" Type="timestamp" />
+          <Property Name="bucket" Type="text" />
+          <Property Name="ros_client_id" Type="text" />
+          <Property Name="ros_contract_number" Type="text" />
         </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="created_at" Type="timestamp" />
-        </EntityType>
-        <Association Name="fk_product">
-          <End Role="products" Type="Self.products" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="orders" Type="Self.orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="products">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_user">
-          <End Role="users" Type="Self.users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="orders" Type="Self.orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище postgresModelContainer">
-          <EntitySet Name="orders" EntityType="Self.orders" Schema="public" store:Type="Tables" />
-          <EntitySet Name="products" EntityType="Self.products" Schema="public" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="public" store:Type="Tables" />
-          <AssociationSet Name="fk_product" Association="Self.fk_product">
-            <End Role="products" EntitySet="products" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="fk_user" Association="Self.fk_user">
-            <End Role="users" EntitySet="users" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
+          <EntitySet Name="edc_other_files" EntityType="Self.edc_other_files" Schema="public" store:Type="Tables" />
+          <EntitySet Name="edc_other_t" EntityType="Self.edc_other_t" Schema="public" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="postgresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="orders">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="quantity" Type="Int32" Nullable="false" />
-          <Property Name="order_date" Type="DateTime" Precision="6" />
-          <NavigationProperty Name="products" Relationship="Self.fk_product" FromRole="orders" ToRole="products" />
-          <NavigationProperty Name="users" Relationship="Self.fk_user" FromRole="orders" ToRole="users" />
-        </EntityType>
-        <EntityType Name="products">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="stock" Type="Int32" />
-          <Property Name="created_at" Type="DateTime" Precision="6" />
-          <NavigationProperty Name="orders" Relationship="Self.fk_product" FromRole="products" ToRole="orders" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="created_at" Type="DateTime" Precision="6" />
-          <NavigationProperty Name="orders" Relationship="Self.fk_user" FromRole="users" ToRole="orders" />
-        </EntityType>
-        <Association Name="fk_product">
-          <End Role="products" Type="Self.products" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="orders" Type="Self.orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="products">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_user">
-          <End Role="users" Type="Self.users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="orders" Type="Self.orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="postgresEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="orders" EntityType="Self.orders" />
-          <EntitySet Name="products" EntityType="Self.products" />
-          <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="fk_product" Association="Self.fk_product">
-            <End Role="products" EntitySet="products" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="fk_user" Association="Self.fk_user">
-            <End Role="users" EntitySet="users" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
+          <EntitySet Name="edc_other_files" EntityType="postgresModel.edc_other_files" />
+          <EntitySet Name="edc_other_t" EntityType="postgresModel.edc_other_t" />
         </EntityContainer>
+        <EntityType Name="edc_other_files">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="s3id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="created_on" Type="DateTime" Precision="6" />
+          <Property Name="path_edc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="path_edc_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="Double" />
+          <Property Name="md5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="upload_succes" Type="Int32" />
+          <Property Name="error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="actual_for_process" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ede_other_t_id" Type="Int32" />
+          <Property Name="tecmid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tem_filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tecmid2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="edc_other_t">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="loris_id" Type="Guid" />
+          <Property Name="ibso_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="path_edc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="uplodate_date" Type="DateTime" Precision="6" />
+          <Property Name="bucket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ros_client_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ros_contract_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище postgresModelContainer" CdmEntityContainer="postgresEntities">
-          <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="postgresModel.orders">
-              <MappingFragment StoreEntitySet="orders">
+          <EntitySetMapping Name="edc_other_files">
+            <EntityTypeMapping TypeName="postgresModel.edc_other_files">
+              <MappingFragment StoreEntitySet="edc_other_files">
+                <ScalarProperty Name="tecmid2" ColumnName="tecmid2" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="tem_filename" ColumnName="tem_filename" />
+                <ScalarProperty Name="tecmid" ColumnName="tecmid" />
+                <ScalarProperty Name="ede_other_t_id" ColumnName="ede_other_t_id" />
+                <ScalarProperty Name="actual_for_process" ColumnName="actual_for_process" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="error" ColumnName="error" />
+                <ScalarProperty Name="upload_succes" ColumnName="upload_succes" />
+                <ScalarProperty Name="md5" ColumnName="md5" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="path_edc_file" ColumnName="path_edc_file" />
+                <ScalarProperty Name="path_edc" ColumnName="path_edc" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="s3id" ColumnName="s3id" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="postgresModel.products">
-              <MappingFragment StoreEntitySet="products">
+          <EntitySetMapping Name="edc_other_t">
+            <EntityTypeMapping TypeName="postgresModel.edc_other_t">
+              <MappingFragment StoreEntitySet="edc_other_t">
+                <ScalarProperty Name="ros_contract_number" ColumnName="ros_contract_number" />
+                <ScalarProperty Name="ros_client_id" ColumnName="ros_client_id" />
+                <ScalarProperty Name="bucket" ColumnName="bucket" />
+                <ScalarProperty Name="uplodate_date" ColumnName="uplodate_date" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="path_edc" ColumnName="path_edc" />
+                <ScalarProperty Name="ibso_id" ColumnName="ibso_id" />
+                <ScalarProperty Name="loris_id" ColumnName="loris_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="postgresModel.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

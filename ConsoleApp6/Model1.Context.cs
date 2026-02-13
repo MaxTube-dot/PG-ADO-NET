@@ -25,8 +25,7 @@ namespace ConsoleApp6
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<orders> orders { get; set; }
-        public virtual DbSet<products> products { get; set; }
-        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<edc_other_files> edc_other_files { get; set; }
+        public virtual DbSet<edc_other_t> edc_other_t { get; set; }
     }
 }

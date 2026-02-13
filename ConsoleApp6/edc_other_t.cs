@@ -12,20 +12,17 @@ namespace ConsoleApp6
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class edc_other_t
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
-        {
-            this.orders = new HashSet<orders>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orders> orders { get; set; }
+        public Nullable<System.Guid> loris_id { get; set; }
+        public string ibso_id { get; set; }
+        public string path_edc { get; set; }
+        public int type { get; set; }
+        public int state { get; set; }
+        public Nullable<System.DateTime> uplodate_date { get; set; }
+        public string bucket { get; set; }
+        public string ros_client_id { get; set; }
+        public string ros_contract_number { get; set; }
     }
 }
