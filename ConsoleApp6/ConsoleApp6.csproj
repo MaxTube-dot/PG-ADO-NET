@@ -94,7 +94,7 @@
     <Compile Include="edc_other_files.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="edc_other_t.cs">
+    <Compile Include="edс_other_t.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">

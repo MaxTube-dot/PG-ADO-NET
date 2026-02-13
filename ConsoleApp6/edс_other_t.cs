@@ -12,7 +12,7 @@ namespace ConsoleApp6
     using System;
     using System.Collections.Generic;
     
-    public partial class edc_other_t
+    public partial class edс_other_t
     {
         public int id { get; set; }
         public Nullable<System.Guid> loris_id { get; set; }

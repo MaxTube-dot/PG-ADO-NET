@@ -21,13 +21,13 @@
           <Property Name="error" Type="text" />
           <Property Name="state" Type="int4" />
           <Property Name="actual_for_process" Type="text" />
-          <Property Name="ede_other_t_id" Type="int4" />
+          <Property Name="edc_other_t_id" Type="int4" />
           <Property Name="tecmid" Type="text" />
-          <Property Name="tem_filename" Type="text" />
+          <Property Name="tecm_filename" Type="text" />
           <Property Name="extension" Type="text" />
           <Property Name="tecmid2" Type="text" />
         </EntityType>
-        <EntityType Name="edc_other_t">
+        <EntityType Name="edс_other_t">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -44,7 +44,7 @@
         </EntityType>
         <EntityContainer Name="Хранилище postgresModelContainer">
           <EntitySet Name="edc_other_files" EntityType="Self.edc_other_files" Schema="public" store:Type="Tables" />
-          <EntitySet Name="edc_other_t" EntityType="Self.edc_other_t" Schema="public" store:Type="Tables" />
+          <EntitySet Name="edс_other_t" EntityType="Self.edс_other_t" Schema="public" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -52,7 +52,7 @@
       <Schema Namespace="postgresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="postgresEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="edc_other_files" EntityType="postgresModel.edc_other_files" />
-          <EntitySet Name="edc_other_t" EntityType="postgresModel.edc_other_t" />
+          <EntitySet Name="edс_other_t" EntityType="postgresModel.edс_other_t" />
         </EntityContainer>
         <EntityType Name="edc_other_files">
           <Key>
@@ -70,13 +70,13 @@
           <Property Name="error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="state" Type="Int32" />
           <Property Name="actual_for_process" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ede_other_t_id" Type="Int32" />
+          <Property Name="edc_other_t_id" Type="Int32" />
           <Property Name="tecmid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tem_filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tecm_filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tecmid2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="edc_other_t">
+        <EntityType Name="edс_other_t">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -91,7 +91,7 @@
           <Property Name="ros_client_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ros_contract_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -102,9 +102,9 @@
               <MappingFragment StoreEntitySet="edc_other_files">
                 <ScalarProperty Name="tecmid2" ColumnName="tecmid2" />
                 <ScalarProperty Name="extension" ColumnName="extension" />
-                <ScalarProperty Name="tem_filename" ColumnName="tem_filename" />
+                <ScalarProperty Name="tecm_filename" ColumnName="tecm_filename" />
                 <ScalarProperty Name="tecmid" ColumnName="tecmid" />
-                <ScalarProperty Name="ede_other_t_id" ColumnName="ede_other_t_id" />
+                <ScalarProperty Name="edc_other_t_id" ColumnName="edc_other_t_id" />
                 <ScalarProperty Name="actual_for_process" ColumnName="actual_for_process" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="error" ColumnName="error" />
@@ -120,9 +120,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="edc_other_t">
-            <EntityTypeMapping TypeName="postgresModel.edc_other_t">
-              <MappingFragment StoreEntitySet="edc_other_t">
+          <EntitySetMapping Name="edс_other_t">
+            <EntityTypeMapping TypeName="postgresModel.edс_other_t">
+              <MappingFragment StoreEntitySet="edс_other_t">
                 <ScalarProperty Name="ros_contract_number" ColumnName="ros_contract_number" />
                 <ScalarProperty Name="ros_client_id" ColumnName="ros_client_id" />
                 <ScalarProperty Name="bucket" ColumnName="bucket" />

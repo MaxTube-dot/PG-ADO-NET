@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2a144f60bd35430a9138cfa93c5d81c8" Name="Diagram1">
-        <EntityTypeShape EntityType="postgresModel.edc_other_files" Width="1.5" PointX="3.375" PointY="4.75" />
-        <EntityTypeShape EntityType="postgresModel.edc_other_t" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="postgresModel.edc_other_files" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="postgresModel.edс_other_t" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

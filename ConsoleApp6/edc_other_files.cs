@@ -26,9 +26,9 @@ namespace ConsoleApp6
         public string error { get; set; }
         public Nullable<int> state { get; set; }
         public string actual_for_process { get; set; }
-        public Nullable<int> ede_other_t_id { get; set; }
+        public Nullable<int> edc_other_t_id { get; set; }
         public string tecmid { get; set; }
-        public string tem_filename { get; set; }
+        public string tecm_filename { get; set; }
         public string extension { get; set; }
         public string tecmid2 { get; set; }
     }

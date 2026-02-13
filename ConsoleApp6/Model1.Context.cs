@@ -26,6 +26,6 @@ namespace ConsoleApp6
         }
     
         public virtual DbSet<edc_other_files> edc_other_files { get; set; }
-        public virtual DbSet<edc_other_t> edc_other_t { get; set; }
+        public virtual DbSet<edс_other_t> edс_other_t { get; set; }
     }
 }
